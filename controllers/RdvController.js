@@ -61,18 +61,35 @@ module.exports = {
      
     },
 
+
+    // getAllRdv: (rq, rs, nx) => {
+    //   database.connectToDb()
+    //   userDataAccess.ListRDV(Id, (err, rdvList) => {
+    //     database.disconnect()
+    //     if (err) {
+    //       return rs.status(500).json(responsRender(null, ServerErrors.SERVER_ERROR, ""))
+    //     }
+        
+    //       if(rdvList)
+    //     {
+    //     return rs.status(200).json(responsRender(rdvList, "", ServerMessage.OK))
+    //     }
+    //   })
+    // },
     getAllRdv:(rq,rs,nx)=>{
-       
-        database.connectToDb()
-        rdvDataAccess.ListBySecretaire(Id,(err,rdvList)=>{
-          database.disconnect()
-          if (err) {
-            return rs.status(500).json(responsRender(null, ServerErrors.SERVER_ERROR, ""))
-          }if(rdvList){
-            return rs.status(200).json(responsRender(rdvList,"",ServerMessage.OK))
-          }
-        })
-      },
+      let token = rq.headers.authorization.split(" ")[1];
+      let Id = decoder.getSubject(token)
+      database.connectToDb()
+      rdvDataAccess.ListRDV(Id,(err,rdvList)=>{
+        database.disconnect()
+        if (err) {
+          return rs.status(500).json(responsRender(null, ServerErrors.SERVER_ERROR, ""))
+        }if(rdvList){
+          return rs.status(200).json(responsRender(rdvList,"",ServerMessage.OK))
+        }
+      })
+    },
+  
 
      
 }

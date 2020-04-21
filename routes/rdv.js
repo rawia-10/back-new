@@ -12,5 +12,5 @@ const uploadController = require('../controllers/uploadController');
 
 router.post('/rdv/add',rdvController.addrdv)
 
-router.get('/rdv/list', rdvController.getAllRdv)
+router.get('/rdv/getall', rdvController.getAllRdv)
 module.exports = router;

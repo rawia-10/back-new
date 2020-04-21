@@ -12,6 +12,8 @@
              this.PassId = "",
              this.email = "",
              this.etat = "",
+             this.RDVId="",
+             this.PsyId = "",
             
              this.State = false,
              this.CreatedAt = new Date(),

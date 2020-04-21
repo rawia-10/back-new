@@ -37,6 +37,18 @@ callback(err, rdvs)
 })
 }
 
+exports.ListRDV = (Id, callback) => {
+    this.RDVId = "",
+RDV.find({RDVId:Id}, (err, rdvs)=> {
+callback(err, rdvs)
+})
+}
+
+exports.ListByPsy = (Id, callback) => {
+    RDV.find({PsyId:Id}, (err, rdvs)=> {
+        callback(err, rdvs)
+    })
+}
 
 // list all psy rdv where psyId = Id and state is true (confirmed)
 exports.ListConfirmedByMedecin = (Id, callback) => {
